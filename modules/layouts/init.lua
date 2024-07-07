@@ -98,7 +98,7 @@ awful.screen.connect_for_each_screen(function(s)
 	set_wallpaper(s)
 
 	-- Each screen has its own tag table.
-	local names = { "Nvim", "Md", "WWW", "Mail", "Chat", "Chrome", "" }
+	local names = { "Nvim", "Note", "WWW", "Mail", "Chat", "Chrome", "" }
 	local l = awful.layout.suit
 	local layouts = { l.tile, l.tile, l.tile, l.tile, l.tile, l.tile, l.floating }
 	awful.tag(names, s, layouts)
