@@ -155,14 +155,10 @@ globalkeys = gears.table.join(
 )
 
 clientkeys = gears.table.join(
-	-------------------------------------------------------------------------------------
-	-- MODIFIED: disabled toggle fullscreen keybinding
-	-------------------------------------------------------------------------------------
-	-- awful.key({ modkey }, "f", function(c)
-	-- 	c.fullscreen = not c.fullscreen
-	-- 	c:raise()
-	-- end, { description = "toggle fullscreen", group = "client" }),
-	-------------------------------------------------------------------------------------
+	awful.key({ modkey }, "f", function(c)
+		c.fullscreen = not c.fullscreen
+		c:raise()
+	end, { description = "toggle fullscreen", group = "client" }),
 	-------------------------------------------------------------------------------------
 	-- MODIFIED: keybinding to close client (except polybar)
 	-------------------------------------------------------------------------------------
@@ -193,14 +189,10 @@ clientkeys = gears.table.join(
 		-- minimized, since minimized clients can't have the focus.
 		c.minimized = true
 	end, { description = "minimize", group = "client" }),
-	-------------------------------------------------------------------------------------
-	-- MODIFIED: disabled toggle maximize keybinding
-	-------------------------------------------------------------------------------------
-	-- awful.key({ modkey }, "m", function(c)
-	-- 	c.maximized = not c.maximized
-	-- 	c:raise()
-	-- end, { description = "(un)maximize", group = "client" }),
-	-------------------------------------------------------------------------------------
+	awful.key({ modkey }, "m", function(c)
+		c.maximized = not c.maximized
+		c:raise()
+	end, { description = "(un)maximize", group = "client" }),
 	awful.key({ modkey, "Control" }, "m", function(c)
 		c.maximized_vertical = not c.maximized_vertical
 		c:raise()
