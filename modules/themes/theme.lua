@@ -25,11 +25,12 @@ theme.fg_focus = "#ffffff"
 theme.fg_urgent = "#ffffff"
 theme.fg_minimize = "#ffffff"
 
-theme.useless_gap = dpi(4)
-theme.border_width = dpi(1)
+theme.useless_gap = dpi(5)
+theme.border_width = dpi(2)
 theme.border_normal = "#4c5260"
 -- theme.border_normal = "#000000"
-theme.border_focus = "#778196"
+theme.border_focus = "#7aa2f7"
+-- theme.border_focus = "#778196"
 -- theme.border_focus = "#535d6c"
 theme.border_marked = "#91231c"
 
@@ -97,7 +98,7 @@ theme.titlebar_maximized_button_normal_active = themes_path .. "default/titlebar
 theme.titlebar_maximized_button_focus_active = themes_path .. "default/titlebar/maximized_focus_active.png"
 
 -- Get wallpaper
-theme.wallpaper = config_path .. "modules/themes/Wallpapers/joshua-sortino-IlvY3z4KVCI-unsplash.jpg"
+theme.wallpaper = config_path .. "modules/themes/Wallpapers/gregory-hayes-LUvDYmenwWk-unsplash.jpg"
 
 -- You can use your own layout icons like this:
 theme.layout_fairh = themes_path .. "default/layouts/fairhw.png"
