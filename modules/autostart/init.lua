@@ -6,6 +6,8 @@ awful.spawn.with_shell("picom")
 -- awful.spawn.with_shell("~/.config/awesome/scripts/auto-wall.sh") -- randomly switch wallpaper
 -- next 3 launchers are for polybar's systray
 awful.spawn.with_shell("nm-applet") -- for wifi module to show up on systray
+-- gnome authentication agent for GUI sudo prompt (for mintupdate, timeshift etc)
+awful.spawn.with_shell("/usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1")
 awful.spawn.with_shell("mintupdate-launcher")
 -- spawn redshift with Ann Arbor's' LAT:LON (https://www.geonames.org)
 -- make sure no previous redshift instance exists (to accounot for its `Restart=always` argument)
