@@ -1,8 +1,9 @@
 local awful = require("awful")
 local beautiful = require("beautiful")
 
--- local screen_geometry = screen[1].workarea
--- local y_offset = 10 -- y-offset for polybar's height
+-- variables needed for resizing rule below
+local screen_geometry = screen[1].workarea
+local y_offset = 16 -- y-offset for polybar
 
 -- {{{ Rules
 awful.rules.rules = {
@@ -18,36 +19,30 @@ awful.rules.rules = {
 			buttons = clientbuttons,
 			screen = awful.screen.preferred,
 			placement = awful.placement.no_overlap + awful.placement.no_offscreen,
-			--------------------------------------------------------------------------------
-			-- ADDED: rule to prevent any client from opening maximized
-			--------------------------------------------------------------------------------
-			-- maximized = false,
-			--------------------------------------------------------------------------------
+			-- maximized = false, -- prevent maximized opening
 		},
 	},
 
-	--------------------------------------------------------------------------------
-	-- ADDED: rules for specific non-floating clients (e.g. browsers, thunderbird,
-	-- Obsidian) to resize to much of screen area and centered when spawned in a
-	-- floating workspace
-	-- *** To avoid needing this rule, set workspace layout tiled ***
-	--------------------------------------------------------------------------------
-	-- {
-	-- 	rule_any = { class = { "Brave-browser", "firefox", "thunderbird", "Google-chrome", "obsidian" } },
-	-- 	properties = {
-	-- 		width = screen_geometry.width * 0.99,
-	-- 		height = (screen_geometry.height - y_offset) * 0.98,
-	-- 	},
-	-- 	callback = function(c)
-	-- 		if awful.layout.get(c.screen) == awful.layout.suit.floating then
-	-- 			c:geometry({
-	-- 				x = (screen_geometry.width - c.width) / 2,
-	-- 				y = y_offset + (screen_geometry.height - c.height) / 2,
-	-- 			})
-	-- 		end
-	-- 	end,
-	-- },
-	--------------------------------------------------------------------------------
+	-- rule for xfce4-terminal to behave nice with gaps setting
+	-- (https://stackoverflow.com/a/29788645/9070040)
+	{ rule = { class = "Xfce4-terminal" }, properties = {
+		size_hints_honor = false,
+	} },
+
+	-- rules to resize specified clients
+	{
+		rule_any = { class = { "Pix" } },
+		properties = {
+			width = screen_geometry.width * 0.95,
+			height = (screen_geometry.height - y_offset) * 0.95,
+		},
+		callback = function(c)
+			c:geometry({
+				x = (screen_geometry.width - c.width) / 2,
+				y = y_offset + (screen_geometry.height - c.height) / 2,
+			})
+		end,
+	},
 
 	-- Floating clients.
 	{
@@ -90,21 +85,17 @@ awful.rules.rules = {
 			},
 		},
 		properties = { floating = true },
-		--------------------------------------------------------------------------------
-		-- ADDED: rule to center all floating clients except yad
-		--------------------------------------------------------------------------------
+
+		-- rule to center all floating clients except yad (for calendar popup)
 		callback = function(c)
 			if c.class ~= "Yad" then
 				awful.placement.centered(c, nil)
 			end
 		end,
-		--------------------------------------------------------------------------------
 	},
 
-	----------------------------------------------------------------------------------
-	-- ADDED: titlebar to specified clients (excluding terminals, browsers)
+	-- titlebar to specified clients (excluding terminals, browsers)
 	-- to enable titlebar for all, comment this section and uncomment original rule below
-	----------------------------------------------------------------------------------
 	{
 		rule_any = {
 			class = {
@@ -112,6 +103,7 @@ awful.rules.rules = {
 				"Xviewer",
 				"mpv",
 				"Xed",
+				"Pix",
 				"KeePassXC",
 				"avidemux3_qt5",
 			},
@@ -120,11 +112,8 @@ awful.rules.rules = {
 	},
 	-- Add titlebars to normal clients and dialogs
 	-- { rule_any = { type = { "normal", "dialog" } }, properties = { titlebars_enabled = true } },
-	----------------------------------------------------------------------------------
 
-	--------------------------------------------------------------------------------
-	-- ADDED: rule to disable polybar border (set by its own config.ini)
-	--------------------------------------------------------------------------------
+	-- rule to disable polybar border (set by its own config.ini)
 	{
 		rule = { class = "Polybar" },
 		properties = {
@@ -132,6 +121,5 @@ awful.rules.rules = {
 			border_color = nil,
 		},
 	},
-	--------------------------------------------------------------------------------
 }
 -- }}}
