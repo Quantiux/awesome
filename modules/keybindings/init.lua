@@ -13,14 +13,14 @@ local home_path = os.getenv("HOME")
 modkey = "Mod4"
 
 -- {{{ Mouse bindings
--- Sets up tag switching via mous scroll
--- root.buttons(gears.table.join(
---	awful.button({}, 3, function()
---		mymainmenu:toggle()
---	end),
---	awful.button({}, 4, awful.tag.viewnext),
---	awful.button({}, 5, awful.tag.viewprev)
--- ))
+-- Sets up popup menu via right-click and tag switching via mouse scroll
+root.buttons(gears.table.join(
+	awful.button({}, 3, function()
+		mymainmenu:toggle()
+	end)
+	-- awful.button({}, 4, awful.tag.viewnext),
+	-- awful.button({}, 5, awful.tag.viewprev)
+))
 -- }}}
 
 -- {{{ Key bindings
