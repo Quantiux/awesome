@@ -10,9 +10,12 @@ local debian = require("debian.menu")
 local has_fdo, freedesktop = pcall(require, "freedesktop")
 
 -- This is used later as the default terminal and editor to run.
-terminal = "x-terminal-emulator"
+terminal = "xfce4-terminal"
 editor = os.getenv("EDITOR") or "editor"
 editor_cmd = terminal .. " -e " .. editor
+
+-- Disable window snapping
+awful.mouse.snap.edge_enabled = false
 
 -- {{{ Menu
 -- Create a launcher widget and a main menu (available on right-click)
@@ -58,11 +61,11 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {
-	awful.layout.suit.tile,
+	awful.layout.suit.tile.left, -- new pane opens right (confusing, I know)
 	awful.layout.suit.floating,
 	awful.layout.suit.max.fullscreen,
 	awful.layout.suit.max,
-	-- awful.layout.suit.tile.left,
+	-- awful.layout.suit.tile,
 	-- awful.layout.suit.tile.bottom,
 	-- awful.layout.suit.tile.top,
 	-- awful.layout.suit.fair,
@@ -100,7 +103,7 @@ awful.screen.connect_for_each_screen(function(s)
 	-- Each screen has its own tag table.
 	local names = { "Nvim", "Note", "WWW", "Mail", "Chat", "Chrome", "" }
 	local l = awful.layout.suit
-	local layouts = { l.tile, l.tile, l.tile, l.tile, l.tile, l.tile, l.floating }
+	local layouts = { l.tile.left, l.tile.left, l.tile.left, l.tile.left, l.tile.left, l.tile.left, l.floating }
 	awful.tag(names, s, layouts)
 	-- awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
 end)
