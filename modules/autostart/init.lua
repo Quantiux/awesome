@@ -8,7 +8,7 @@ awful.spawn.with_shell("picom")
 awful.spawn.with_shell("nm-applet") -- for wifi module to show up on systray
 -- gnome authentication agent for GUI sudo prompt (for mintupdate, timeshift etc)
 awful.spawn.with_shell("/usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1")
-awful.spawn.with_shell("mintupdate-launcher")
+-- awful.spawn.with_shell("mintupdate-launcher")  -- use "checkupdates" module in polybar instead
 -- spawn redshift with Ann Arbor's' LAT:LON (https://www.geonames.org)
 -- make sure no previous redshift instance exists (to accounot for its `Restart=always` argument)
 awful.spawn.with_shell("pgrep -x redshift-gtk > /dev/null || redshift-gtk -l 42.25323:-83.83877")
