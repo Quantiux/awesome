@@ -10,7 +10,7 @@ local debian = require("debian.menu")
 local has_fdo, freedesktop = pcall(require, "freedesktop")
 
 -- This is used later as the default terminal and editor to run.
-terminal = "xfce4-terminal"
+terminal = "alacritty"
 editor = os.getenv("EDITOR") or "editor"
 editor_cmd = terminal .. " -e " .. editor
 
@@ -101,9 +101,10 @@ awful.screen.connect_for_each_screen(function(s)
 	set_wallpaper(s)
 
 	-- Each screen has its own tag table.
-	local names = { "Nvim", "Note", "WWW", "Mail", "Chat", "Chrome", "" }
+	local names = { "Nvim", "Note", "WWW", "Mail", "Chat", "Chrome", "", "" }
 	local l = awful.layout.suit
-	local layouts = { l.tile.left, l.tile.left, l.tile.left, l.tile.left, l.tile.left, l.tile.left, l.floating }
+	local layouts =
+		{ l.tile.left, l.tile.left, l.tile.left, l.tile.left, l.tile.left, l.tile.left, l.floating, l.floating }
 	awful.tag(names, s, layouts)
 	-- awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
 end)
