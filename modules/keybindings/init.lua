@@ -104,22 +104,17 @@ globalkeys = gears.table.join(
 	end, { description = "restore minimized", group = "client" }),
 
 	-- Prompt
-	-------------------------------------------------------------------------------------
-	-- MODIFIED: replaced keybinding to attach run prompt to rofi
-	-------------------------------------------------------------------------------------
+	-- replaced keybinding to attach run prompt to rofi
 	awful.key({ modkey }, "r", function()
 		awful.spawn("/bin/bash -c '/usr/bin/rofi -show drun'")
 	end, { description = "rofi drun prompt", group = "launcher" }),
-	-------------------------------------------------------------------------------------
 
 	-- Menubar
 	awful.key({ modkey }, "p", function()
 		menubar.show()
 	end, { description = "show the menubar", group = "launcher" }),
 
-	------------------------------------------------------------------------------------------
-	-- ADDED: other global keybindings (make sure appimage applications exist in correct path)
-	------------------------------------------------------------------------------------------
+	-- additional global keybindings (make sure appimage applications exist in correct path)
 	awful.key({ "Control", "Mod1" }, "e", function()
 		awful.spawn("xed")
 	end, { description = "open xed", group = "launcher" }),
@@ -150,8 +145,15 @@ globalkeys = gears.table.join(
 
 	awful.key({}, "Print", function()
 		awful.spawn("xfce4-screenshooter")
-	end, { description = "take a screenshot", group = "custom" })
-	-------------------------------------------------------------------------------------
+	end, { description = "take a screenshot", group = "custom" }),
+
+	-- keybinding to kill conky (runs as a background process and draws output on its own
+	-- window, making it independent of awesome's client management, which is why keybinding
+	-- <modkey>q set below to kill focused clients does not work with conky)
+	-- make sure to enter exact name of the executable appimage
+	awful.key({ modkey, "Shift" }, "c", function()
+		awful.util.spawn_with_shell("pkill -f conky-ubuntu-22.04-x86_64-v1.21.4.AppImage")
+	end, { description = "kill conky", group = "custom" })
 )
 
 clientkeys = gears.table.join(
@@ -159,16 +161,15 @@ clientkeys = gears.table.join(
 		c.fullscreen = not c.fullscreen
 		c:raise()
 	end, { description = "toggle fullscreen", group = "client" }),
-	-------------------------------------------------------------------------------------
-	-- MODIFIED: keybinding to close client (except polybar)
-	-------------------------------------------------------------------------------------
+
+	-- keybinding to close client (except polybar)
 	-- awful.key({ modkey, "Shift" }, "c", function(c)
 	awful.key({ modkey }, "q", function(c)
 		if c.class ~= "Polybar" then
 			c:kill()
 		end
 	end, { description = "close", group = "client" }),
-	-------------------------------------------------------------------------------------
+
 	awful.key(
 		{ modkey, "Control" },
 		"space",
