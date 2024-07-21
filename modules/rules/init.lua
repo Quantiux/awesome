@@ -23,12 +23,6 @@ awful.rules.rules = {
 		},
 	},
 
-	-- rule for xfce4-terminal to behave nice with gaps setting
-	-- (https://stackoverflow.com/a/29788645/9070040)
-	{ rule = { class = "Xfce4-terminal" }, properties = {
-		size_hints_honor = false,
-	} },
-
 	-- rules to resize specified clients
 	{
 		rule_any = { class = { "Pix" } },
@@ -71,6 +65,7 @@ awful.rules.rules = {
 				"Xfce4-power-manager-settings",
 				"Xdg-desktop-portal-gtk",
 				"Yad",
+				"Conky",
 			},
 
 			-- Note that the name property shown in xprop might be set slightly after creation of the client
