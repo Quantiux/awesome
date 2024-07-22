@@ -66,6 +66,7 @@ awful.rules.rules = {
 				"Xdg-desktop-portal-gtk",
 				"Yad",
 				"Conky",
+				"Gnucash",
 			},
 
 			-- Note that the name property shown in xprop might be set slightly after creation of the client
