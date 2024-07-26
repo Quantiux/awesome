@@ -25,11 +25,26 @@ root.buttons(gears.table.join(
 
 -- {{{ Key bindings
 globalkeys = gears.table.join(
-	awful.key({ modkey }, "s", hotkeys_popup.show_help, { description = "show help", group = "awesome" }),
+	awful.key(
+		{ modkey },
+		"s",
+		hotkeys_popup.show_help,
+		{ description = "show help", group = "awesome" }
+	),
 
-	awful.key({ modkey }, "Escape", awful.tag.history.restore, { description = "go back", group = "tag" }),
+	awful.key(
+		{ modkey },
+		"Escape",
+		awful.tag.history.restore,
+		{ description = "go back", group = "tag" }
+	),
 
-	awful.key({ modkey }, "Left", awful.tag.viewprev, { description = "view previous", group = "tag" }),
+	awful.key(
+		{ modkey },
+		"Left",
+		awful.tag.viewprev,
+		{ description = "view previous", group = "tag" }
+	),
 	awful.key({ modkey }, "Right", awful.tag.viewnext, { description = "view next", group = "tag" }),
 
 	awful.key({ modkey }, "j", function()
@@ -38,7 +53,8 @@ globalkeys = gears.table.join(
 	awful.key({ modkey }, "k", function()
 		awful.client.focus.byidx(-1)
 	end, { description = "focus previous by index", group = "client" }),
-	awful.key({ modkey }, "w", function()
+	-- replaced keybinding
+	awful.key({ modkey, "Shift" }, "w", function()
 		mymainmenu:show()
 	end, { description = "show main menu", group = "awesome" }),
 
@@ -55,7 +71,12 @@ globalkeys = gears.table.join(
 	awful.key({ modkey, "Control" }, "k", function()
 		awful.screen.focus_relative(-1)
 	end, { description = "focus the previous screen", group = "screen" }),
-	awful.key({ modkey }, "u", awful.client.urgent.jumpto, { description = "jump to urgent client", group = "client" }),
+	awful.key(
+		{ modkey },
+		"u",
+		awful.client.urgent.jumpto,
+		{ description = "jump to urgent client", group = "client" }
+	),
 	awful.key({ modkey }, "Tab", function()
 		awful.client.focus.history.previous()
 		if client.focus then
@@ -67,8 +88,18 @@ globalkeys = gears.table.join(
 	awful.key({ modkey }, "Return", function()
 		awful.spawn(terminal)
 	end, { description = "open a terminal", group = "launcher" }),
-	awful.key({ modkey, "Control" }, "r", awesome.restart, { description = "reload awesome", group = "awesome" }),
-	awful.key({ modkey, "Shift" }, "q", awesome.quit, { description = "quit awesome", group = "awesome" }),
+	awful.key(
+		{ modkey, "Control" },
+		"r",
+		awesome.restart,
+		{ description = "reload awesome", group = "awesome" }
+	),
+	awful.key(
+		{ modkey, "Shift" },
+		"q",
+		awesome.quit,
+		{ description = "quit awesome", group = "awesome" }
+	),
 
 	awful.key({ modkey }, "l", function()
 		awful.tag.incmwfact(0.05)
@@ -114,7 +145,7 @@ globalkeys = gears.table.join(
 		menubar.show()
 	end, { description = "show the menubar", group = "launcher" }),
 
-	-- additional global keybindings (make sure appimage applications exist in correct path)
+	-- additional global keybindings
 	awful.key({ "Control", "Mod1" }, "e", function()
 		awful.spawn("xed")
 	end, { description = "open xed", group = "launcher" }),
@@ -147,6 +178,9 @@ globalkeys = gears.table.join(
 		awful.spawn("xfce4-screenshooter")
 	end, { description = "take a screenshot", group = "custom" }),
 
+	awful.key({ modkey }, "w", function()
+		awful.spawn("xdg-open http://127.0.0.1:8384")
+	end, { description = "show main menu", group = "awesome" }),
 	-- keybinding to kill conky (runs as a background process and draws output on its own
 	-- window, making it independent of awesome's client management, which is why keybinding
 	-- <modkey>q set below to kill focused clients does not work with conky)
