@@ -16,3 +16,4 @@ awful.spawn.with_shell("~/.config/polybar/launch.sh")
 awful.spawn.with_shell("xfce4-power-manager") -- for power management
 -- for volume control with keys (make sure only one instance is active)
 awful.spawn.with_shell("pgrep -x xfce4-volumed > /dev/null || xfce4-volumed")
+awful.spawn.with_shell("~/.config/awesome/scripts/start-syncthing.sh")
