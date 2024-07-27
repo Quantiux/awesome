@@ -186,7 +186,7 @@ globalkeys = gears.table.join(
 	-- <modkey>q set below to kill focused clients does not work with conky)
 	-- make sure to enter exact name of the executable appimage
 	awful.key({ modkey, "Shift" }, "c", function()
-		awful.util.spawn_with_shell("pkill -f conky-ubuntu-22.04-x86_64-v1.21.4.AppImage")
+		awful.util.spawn_with_shell("pkill -SIGINT -f conky-ubuntu-22.04-x86_64-v1.21.4.AppImage")
 	end, { description = "kill conky", group = "custom" })
 )
 
