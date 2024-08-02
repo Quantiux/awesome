@@ -67,6 +67,8 @@ awful.rules.rules = {
 				"Yad",
 				"Conky",
 				"Gnucash",
+				"Baobab",
+				"Gnome-disks",
 			},
 
 			-- Note that the name property shown in xprop might be set slightly after creation of the client
