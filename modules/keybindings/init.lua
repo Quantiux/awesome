@@ -158,6 +158,10 @@ globalkeys = gears.table.join(
 		awful.spawn("brave-browser-stable")
 	end, { description = "open brave-browser-stable", group = "launcher" }),
 
+	awful.key({ "Control", "Mod1" }, "c", function()
+		awful.spawn("google-chrome-stable")
+	end, { description = "open brave-browser-stable", group = "launcher" }),
+
 	awful.key({ "Control", "Mod1" }, "o", function()
 		awful.spawn(home_path .. "/Downloads/Apps/Obsidian/Obsidian-1.6.5.AppImage")
 	end, { description = "open Obsidian", group = "launcher" }),
